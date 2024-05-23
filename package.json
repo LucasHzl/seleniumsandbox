@@ -4,5 +4,18 @@
     "geckodriver": "^4.4.0",
     "mocha": "10.4.0",
     "selenium-webdriver": "^4.21.0"
-  }
+  },
+  "name": "seleniumsandbox",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
