@@ -46,7 +46,7 @@ const assert = require("assert");
             await emailField.sendKeys(process.env.emailSimplon);
             await emailField.sendKeys(Key.TAB);
 
-            await driver.sleep(1000);  
+            await driver.sleep(1000);
             let activeElement = await driver.switchTo().activeElement();
             await activeElement.sendKeys(process.env.passwordSimplon);
             await driver.sleep(5000);
@@ -62,6 +62,70 @@ const assert = require("assert");
             console.log('Bouton connexion non trouvé');
         }
 
+        let renderedButton = await driver.wait(until.elementLocated(By.xpath(`//*[@href="/workspaces"]`)), 5000);
+        if (renderedButton) {
+            await renderedButton.click();
+            await driver.sleep(5000);
+        } else {
+            console.log('Bouton non trouvé');
+        }
+
+        let sortingButton = await driver.wait(until.elementLocated(By.css('button[title="Briefs - Tri ascendant actif"]')), 5000);
+        if (sortingButton) {
+            await sortingButton.click();
+            await driver.sleep(5000);
+        } else {
+            console.log('Bouton non trouvé');
+        }
+
+        let seleniumSandboxButton = await driver.wait(until.elementLocated(By.xpath('//li[contains(@class, "sc-2781a8cc-0")]//h2[text()="Selenium Sandbox"]')), 5000);
+        if (seleniumSandboxButton) {
+            await seleniumSandboxButton.click();
+            await driver.sleep(5000);
+        } else {
+            console.log('Bouton non trouvé');
+        }
+
+        let submitRenderButton = await driver.wait(until.elementLocated(By.xpath('//button[contains(.,"Soumettre un rendu")]')), 5000);
+        if (submitRenderButton) {
+            await submitRenderButton.click();
+            await driver.sleep(5000);
+        } else {
+            console.log('Bouton non trouvé');
+        }
+
+        let urlInput = await driver.findElement(By.css(".sc-12218616-0.eneWwx"));
+        if (urlInput) {
+            await driver.sleep(5000);
+            await urlInput.sendKeys('https://github.com/LucasHzl/seleniumsandbox');
+        } else {
+            console.log('Champ d\'entrée non trouvé');
+        }
+
+        let addUrl = await driver.findElement(By.xpath('//*[@id="tabpanel-0"]/div/div/button'));
+        if (addUrl) {
+            await driver.sleep(5000);
+            await addUrl.click();
+        } else {
+            console.log('Bouton non trouvé');
+        }
+
+        let addMessage = await driver.findElement(By.xpath('//*[@id="message"]'));
+        if (addMessage) {
+            await driver.sleep(5000);
+            await urlInput.sendKeys('oui');
+        } else {
+            console.log('Champ d\'entrée non trouvé');
+        }
+
+        let sendSubmit = await driver.findElement(By.xpath('//*[@id="__next"]/div[3]/div/div/div/div[2]/div/form/div[3]/button[2]'));
+        if (sendSubmit) {
+            await driver.sleep(5000);
+            await sendSubmit.click();
+        } else {
+            console.log('Champ d\'entrée non trouvé');
+        }
+
         let errorMessageElement = await driver.findElement(By.css('.sc-6a4c5dd9-0.hpuCSy.sc-7916b41a-0.jqHZDg'));
         if (errorMessageElement) {
             let errorMessage = await errorMessageElement.getText();
@@ -69,8 +133,6 @@ const assert = require("assert");
         } else {
             console.log('Le message d\'erreur n\'a pas été trouvé.');
         }
-
-
 
     } catch (e) {
         console.log(e);
