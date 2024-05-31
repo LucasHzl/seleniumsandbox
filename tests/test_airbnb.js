@@ -46,18 +46,25 @@ const assert = require("assert");
             console.log('Champs ouverture du calendrier non trouvé');
         }
 
-        let selectArrivalDate = await driver.wait(until.elementLocated(By.css('[data-testid="calendar-day-04/06/2024"]')), 5000);
+        let selectArrivalDate = await driver.wait(until.elementLocated(By.css('._nuyjria.notranslate')), 5000);
         if (selectArrivalDate) {
             await selectArrivalDate.click();
         } else {
             console.log('Champs de sélection date arrivée non trouvé');
         }
 
-        let selectDepartureDate = await driver.wait(until.elementLocated(By.css('[data-testid="calendar-day-07/06/2024"]')), 5000);
+        let selectDepartureDate = await driver.wait(until.elementLocated(By.css('._1swsa24a.notranslate')), 10000);
         if (selectDepartureDate) {
             await selectDepartureDate.click();
         } else {
             console.log('Champs de sélection date départ non trouvé');
+        }
+
+        let selectTravelersField = await driver.wait(until.elementLocated(By.css('.cz9siyu.atm_l8_srw7uq.atm_ks_15vqwwr.atm_mk_h2mmj6.atm_vv_1q9ccgz.atm_vy_1osqo2v.atm_wq_kb7nvz.dir.dir-ltr')), 10000);
+        if (selectTravelersField) {
+            await selectTravelersField.click();
+        } else {
+            console.log('Champs de sélection des voyageurs non trouvé');
         }
 
         let searchButton = await driver.wait(until.elementLocated(By.css('.[data-testid="structured-search-input-search-button"]')), 5000);
