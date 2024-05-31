@@ -1,7 +1,6 @@
-const { Builder, By, until } = require('selenium-webdriver');
-require('dotenv').config();
-
-const { By, Key, Builder, WebElementCondition, until } = require("selenium-webdriver");
+const { Builder, By, until, WebElementCondition, Key } = require('selenium-webdriver');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 require("chromedriver");
 const assert = require("assert");
 
@@ -44,12 +43,12 @@ const assert = require("assert");
 
         let emailField = await driver.wait(until.elementLocated(By.css('.sc-12218616-0.eneWwx')), 10000);
         if (emailField) {
-            await emailField.sendKeys('bonjour@exemple.com');
+            await emailField.sendKeys(process.env.emailSimplon);
             await emailField.sendKeys(Key.TAB);
 
             await driver.sleep(1000);  
             let activeElement = await driver.switchTo().activeElement();
-            await activeElement.sendKeys('jesuisletest');
+            await activeElement.sendKeys(process.env.passwordSimplon);
             await driver.sleep(5000);
         } else {
             console.log('Champs non trouvé');
